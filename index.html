@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | AURE Atelier</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f2ed;font-family:Arial,sans-serif;color:#342d29;min-height:100vh;display:grid;place-items:center;padding:22px}
+.card{background:#fff;border-radius:22px;padding:38px 25px;max-width:420px;width:100%;text-align:center;box-shadow:0 8px 35px #0000000d}
+.brand{font-family:Georgia,serif;font-size:30px;letter-spacing:4px;margin-bottom:28px}
+h1{font-size:23px;margin:0 0 10px}
+.subtitle{color:#85786e;margin-bottom:32px}
+.details{text-align:left;line-height:2.3;overflow-wrap:anywhere}
+a{color:#51483f;text-decoration:none}
+button{border:0;background:#342d29;color:white;border-radius:12px;padding:17px;width:100%;font-size:16px;font-weight:bold;margin-top:28px;cursor:pointer}
+.note{font-size:12px;color:#85786e;margin-top:18px}
+</style>
+</head>
+<body>
+<main class="card">
+<div class="brand">AURE</div>
+<h1>Lauren LARCHEVEQUE</h1>
+<div class="subtitle">AURE Atelier</div>
+<div class="details">
+<div>☎ <a href="tel:+33781539701">07 81 53 97 01</a></div>
+<div>✉ <a href="mailto:aureatelier.contact@gmail.com">aureatelier.contact@gmail.com</a></div>
+<div>⌁ <a href="https://aure-atelier.fr">aure-atelier.fr</a></div>
+</div>
+<button id="save">＋ Ajouter aux contacts</button>
+<p class="note">Votre téléphone peut demander de confirmer l'importation.</p>
+</main>
+<script>
+document.getElementById('save').addEventListener('click',function(){
+const vcard=[
+'BEGIN:VCARD',
+'VERSION:3.0',
+'N:LARCHEVEQUE;Lauren;;;',
+'FN:Lauren LARCHEVEQUE',
+'ORG:AURE Atelier',
+'TEL;TYPE=CELL:+33781539701',
+'EMAIL;TYPE=INTERNET:aureatelier.contact@gmail.com',
+'URL:https://aure-atelier.fr',
+'END:VCARD'
+].join('\r\n')+'\r\n';
+const blob=new Blob([vcard],{type:'text/vcard;charset=utf-8'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download='Lauren-LARCHEVEQUE.vcf';
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),60000);
+});
+</script>
+</body>
+</html>
